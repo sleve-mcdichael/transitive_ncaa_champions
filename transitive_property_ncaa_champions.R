@@ -12,6 +12,8 @@ library(stringr)
 
 #load in the dataset from the website
 games_data <- fread("https://www.masseyratings.com/scores.php?s=298892&sub=12801&all=1&mode=3&format=0",sep='\n')
+#or read it in from the working directory
+#games_data <- readRDS("games_data.RDS")
 data <- games_data[-(1:8)]
 head(data)
 setDT(data)
