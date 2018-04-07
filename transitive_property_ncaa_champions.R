@@ -88,6 +88,13 @@ find_link <- function(team,list){
 
 #function to establish and display the transitive chain from a given team to Villanova (if it exists)
 transitive_chain <- function(team) {
+  if(!team %in% master_list_of_teams){
+    "Check spelling"
+  }
+  else if(count_degrees(team, transitive_group_list)=="No path"){
+    "No path to national championship"
+  }
+  else{
   deg <- count_degrees(team, transitive_group_list)
   chain <- c()
   link <- team
@@ -100,10 +107,14 @@ transitive_chain <- function(team) {
     chain_display <- cat(chain_display,link," -> ")
   }
   chain_display <- cat(chain_display,"Villanova")
-  
+  }
 }
 
 ######### CALCULATIONS ##############################################################################
+
+#list of all teams - there are 1362 teams that played games
+master_list_of_teams <- unique(union(data$Team1,data$Team2))
+length(master_list_of_teams)
 
 
 #Define Villanova as having 0 degrees of separation from the championship
